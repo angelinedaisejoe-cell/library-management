@@ -1,0 +1,78 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #d6eaf8;
+}
+
+header{
+    background-color: #2471a3;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.container{
+    text-align: center;
+    margin-top: 100px;
+}
+
+button{
+    background-color: #2471a3;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: #1a5276;
+}
+
+.login-box{
+    width: 300px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+table{
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+th{
+    background-color: #2471a3;
+    color: white;
+}
+
+.books{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.book{
+    width: 220px;
+    background: white;
+    padding: 15px;
+    border: 1px solid gray;
+    text-align: center;
+}
