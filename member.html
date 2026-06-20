@@ -1,29 +1,31 @@
-<section id="member">
-
+<body>
     <header>
-        <h1>Member Page</h1>
+        <h1>My Website</h1>
     </header>
 
-    <table>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+    </nav>
 
-        <tr>
-            <th>Member ID</th>
-            <th>Member Name</th>
-            <th>Books Issued</th>
-        </tr>
+    <section>
+        <article>
+            <h2>Article Title</h2>
+            <p>Content here...</p>
+        </article>
+        <canvas id="c" width="300" height="200"></canvas>
 
-        <tr>
-            <td>M101</td>
-            <td>Ananya</td>
-            <td>2</td>
-        </tr>
+<script>
+let canvas = document.getElementById("c");
+let ctx = canvas.getContext("2d");
 
-        <tr>
-            <td>M102</td>
-            <td>Kiran</td>
-            <td>1</td>
-        </tr>
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+</script>
+    </section>
 
-    </table>
-
-</section>
+    <footer>
+        Copyright 2026
+    </footer>
+</body>
