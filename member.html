@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard</title>
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h2>LibraryMS</h2>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="member.html">Dashboard</a></li>
+            <li><a href="books.html">Books</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Member Dashboard</h1>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome, Member!</h2>
+        <p>Manage your borrowed books and explore the library.</p>
+    </section>
+
+    <!-- Member Details -->
+    <div class="grid-container">
+
+        <div class="grid-item">
+            <h2>Member ID</h2>
+            <p>M101</p>
+        </div>
+
+        <div class="grid-item">
+            <h2>Name</h2>
+            <p>John Doe</p>
+        </div>
+
+        <div class="grid-item">
+            <h2>Membership</h2>
+            <p>Student</p>
+        </div>
+
+        <div class="grid-item">
+            <h2>Books Issued</h2>
+            <p>2</p>
+        </div>
+
+    </div>
+
+    <header>
+        <h2>Issued Books</h2>
+    </header>
+
+    <table>
+
+        <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>Java Programming</td>
+            <td>James Gosling</td>
+            <td>25-06-2026</td>
+            <td>05-07-2026</td>
+            <td>Issued</td>
+        </tr>
+
+        <tr>
+            <td>Database Systems</td>
+            <td>Elmasri</td>
+            <td>20-06-2026</td>
+            <td>30-06-2026</td>
+            <td>Returned</td>
+        </tr>
+
+    </table>
+
+    <header>
+        <h2>Available Books</h2>
+    </header>
+
+    <div class="books">
+
+        <div class="book">
+            <h3>Python Basics</h3>
+            <p>Author: Guido Van Rossum</p>
+            <button>Issue Book</button>
+        </div>
+
+        <div class="book">
+            <h3>Operating System</h3>
+            <p>Author: Galvin</p>
+            <button>Issue Book</button>
+        </div>
+
+        <div class="book">
+            <h3>Computer Networks</h3>
+            <p>Author: Andrew Tanenbaum</p>
+            <button>Issue Book</button>
+        </div>
+
+    </div>
+
+</body>
+</html>

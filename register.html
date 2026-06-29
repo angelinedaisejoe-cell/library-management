@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register – LibraryMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="library.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">📚 LibraryMS</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="hero-banner">
+    <div class="banner-text">
+        <h1>Join Our Library<br><span>Create Your Account</span></h1>
+        <p>Fill in the form to become a member and start exploring thousands of books.</p>
+    </div>
+    <div class="banner-icon">📖</div>
+</div>
+
+<!-- MAIN -->
+<div class="page-body">
+
+    <!-- LEFT: FORM -->
+    <div class="form-card">
+        <h2>Member Registration</h2>
+        <form id="regForm" novalidate>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="e.g. Anju Sharma">
+                    <div class="error-msg" id="err-name">Please enter your full name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com">
+                    <div class="error-msg" id="err-email">Enter a valid email address.</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Min. 6 characters">
+                    <div class="error-msg" id="err-password">Password must be at least 6 characters.</div>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                    <div class="error-msg" id="err-dob">Please select your date of birth.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                    <label><input type="radio" name="gender" value="Other"> Other</label>
+                </div>
+                <div class="error-msg" id="err-gender">Please select your gender.</div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="membership">Membership Type</label>
+                    <select id="membership">
+                        <option value="">Select Membership</option>
+                        <option value="Student">Student</option>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Guest">Guest</option>
+                    </select>
+                    <div class="error-msg" id="err-membership">Please select a membership type.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" placeholder="10-digit number">
+                    <div class="error-msg" id="err-phone">Enter a valid 10-digit phone number.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Book Categories</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="Science"> Science</label>
+                    <label><input type="checkbox" value="Technology"> Technology</label>
+                    <label><input type="checkbox" value="History"> History</label>
+                    <label><input type="checkbox" value="Fiction"> Fiction</label>
+                    <label><input type="checkbox" value="Programming"> Programming</label>
+                </div>
+                <div class="error-msg" id="err-categories">Select at least one category.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="file">Upload College / Staff ID</label>
+                <input type="file" id="file" accept="image/*,.pdf">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" rows="3" placeholder="Your full address…"></textarea>
+                <div class="error-msg" id="err-address">Please enter your address.</div>
+            </div>
+
+            <button type="submit" class="submit-btn">Register Now</button>
+        </form>
+    </div>
+
+    <!-- RIGHT: PREVIEW -->
+    <div class="profile-section">
+
+        <div class="preview-placeholder" id="placeholder">
+            <div class="ph-icon">🪪</div>
+            <p>Your member card will appear here<br>after you fill the form and register.</p>
+        </div>
+
+        <div class="profile-card" id="profileCard">
+            <div class="card-header">
+                <div class="avatar" id="cardAvatar">A</div>
+                <div class="card-header-text">
+                    <h3 id="cardName">—</h3>
+                    <span id="cardEmail">—</span>
+                </div>
+                <div class="membership-badge" id="cardMembership">—</div>
+            </div>
+            <div class="card-body">
+                <div class="card-row">
+                    <span class="key">📞 Phone</span>
+                    <span class="val" id="cardPhone">—</span>
+                </div>
+                <div class="card-row">
+                    <span class="key">🎂 Date of Birth</span>
+                    <span class="val" id="cardDob">—</span>
+                </div>
+                <div class="card-row">
+                    <span class="key">⚧ Gender</span>
+                    <span class="val" id="cardGender">—</span>
+                </div>
+                <div class="card-row">
+                    <span class="key">📁 ID File</span>
+                    <span class="val" id="cardFile">—</span>
+                </div>
+                <div class="card-row">
+                    <span class="key">📚 Categories</span>
+                    <span class="val" id="cardCategories">—</span>
+                </div>
+                <div class="card-row">
+                    <span class="key">🏠 Address</span>
+                    <span class="val" id="cardAddress">—</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="storage-banner" id="storageBanner">
+            ✅ Member data saved to local storage successfully.
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Library Management System</p>
+</footer>
+
+<script>
+    const regForm = document.getElementById('regForm');
+
+    // ── helpers ──
+    const get = id => document.getElementById(id);
+    const setError = (fieldId, errId, show) => {
+        const field = get(fieldId);
+        const msg   = get(errId);
+        if (show) { field && field.classList.add('error');    msg && msg.classList.add('show'); }
+        else       { field && field.classList.remove('error'); msg && msg.classList.remove('show'); }
+    };
+
+    // ── validate ──
+    const validate = () => {
+        let valid = true;
+
+        // name
+        const name = get('name').value.trim();
+        setError('name', 'err-name', !name);
+        if (!name) valid = false;
+
+        // email
+        const email = get('email').value.trim();
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        setError('email', 'err-email', !emailOk);
+        if (!emailOk) valid = false;
+
+        // password
+        const pw = get('password').value;
+        setError('password', 'err-password', pw.length < 6);
+        if (pw.length < 6) valid = false;
+
+        // dob
+        const dob = get('dob').value;
+        setError('dob', 'err-dob', !dob);
+        if (!dob) valid = false;
+
+        // gender
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const genderErr = get('err-gender');
+        if (!gender) { genderErr.classList.add('show'); valid = false; }
+        else          { genderErr.classList.remove('show'); }
+
+        // membership
+        const membership = get('membership').value;
+        setError('membership', 'err-membership', !membership);
+        if (!membership) valid = false;
+
+        // phone
+        const phone = get('phone').value.trim();
+        const phoneOk = /^\d{10}$/.test(phone);
+        setError('phone', 'err-phone', !phoneOk);
+        if (!phoneOk) valid = false;
+
+        // categories
+        const cats = [...document.querySelectorAll('.checkbox-group input:checked')].map(c => c.value);
+        const catErr = get('err-categories');
+        if (cats.length === 0) { catErr.classList.add('show'); valid = false; }
+        else                    { catErr.classList.remove('show'); }
+
+        // address
+        const address = get('address').value.trim();
+        setError('address', 'err-address', !address);
+        if (!address) valid = false;
+
+        return { valid, name, email, dob, gender: gender?.value, membership, phone, cats, address };
+    };
+
+    // ── submit ──
+    regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const { valid, name, email, dob, gender, membership, phone, cats, address } = validate();
+        if (!valid) return;
+
+        const fileInput = get('file');
+        const fileName  = fileInput.files.length ? fileInput.files[0].name : 'Not uploaded';
+
+        // format dob
+        const dobFormatted = new Date(dob).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+
+        // populate card
+        get('cardAvatar').textContent    = name.charAt(0).toUpperCase();
+        get('cardName').textContent      = name;
+        get('cardEmail').textContent     = email;
+        get('cardMembership').textContent = membership;
+        get('cardPhone').textContent     = phone;
+        get('cardDob').textContent       = dobFormatted;
+        get('cardGender').textContent    = gender;
+        get('cardFile').textContent      = fileName;
+        get('cardAddress').textContent   = address;
+
+        // categories as tags
+        const catWrap = get('cardCategories');
+        catWrap.innerHTML = cats.map(c => `<span class="cat-tag">${c}</span>`).join('');
+        catWrap.className = 'val categories-wrap';
+
+        // show card, hide placeholder
+        get('placeholder').style.display  = 'none';
+        get('profileCard').classList.add('show');
+
+        // local storage
+        const memberData = { name, email, dob: dobFormatted, gender, membership, phone, cats, address, fileName, registeredAt: new Date().toISOString() };
+        try {
+            const existing = JSON.parse(localStorage.getItem('librayms_members') || '[]');
+            existing.push(memberData);
+            localStorage.setItem('librayms_members', JSON.stringify(existing));
+            get('storageBanner').classList.add('show');
+        } catch(err) {
+            console.warn('LocalStorage unavailable:', err);
+        }
+
+        // scroll to card on mobile
+        get('profileCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // ── live clear errors on change ──
+    ['name','email','password','dob','membership','phone','address'].forEach(id => {
+        get(id)?.addEventListener('input', () => {
+            get(id).classList.remove('error');
+            const errEl = get('err-' + id);
+            if (errEl) errEl.classList.remove('show');
+        });
+    });
+</script>
+</body>
+</html>
