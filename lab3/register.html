@@ -253,7 +253,6 @@
         const fileInput = get('file');
         const fileName  = fileInput.files.length ? fileInput.files[0].name : 'Not uploaded';
 
-        // format dob
         const dobFormatted = new Date(dob).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
 
         // populate card

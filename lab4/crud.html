@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Management</title>
+
+
+<link href="crud.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav>
+<div class="logo">
+LibraryMS
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="#">Books</a></li>
+<li><a href="#">Members</a></li>
+<li><a href="#">Logout</a></li>
+
+</ul>
+
+</nav>
+
+<!-- Hero -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+Book <span>CRUD</span> Management
+</h1>
+
+<p>
+Add, update, delete and manage books in the library database.
+</p>
+
+</div>
+
+<div class="hero-image">
+
+<img src="images/library.png" alt="Library">
+
+</div>
+
+</section>
+
+<!-- CRUD Form -->
+
+<section class="register-page">
+
+<div class="container">
+
+<h2>Add / Update Book</h2>
+
+<form id="bookForm">
+
+<input type="hidden" id="bookId">
+
+<label>Book Title</label>
+
+<input
+type="text"
+id="title"
+placeholder="Enter Book Title"
+required>
+
+<label>Author</label>
+
+<input
+type="text"
+id="author"
+placeholder="Enter Author Name"
+required>
+
+<label>ISBN</label>
+
+<input
+type="text"
+id="isbn"
+placeholder="Enter ISBN"
+required>
+
+<label>Category</label>
+
+<select id="category">
+
+<option>Programming</option>
+<option>Database</option>
+<option>Networking</option>
+<option>Artificial Intelligence</option>
+<option>Operating System</option>
+
+</select>
+
+<label>Status</label>
+
+<select id="availability">
+
+<option value="Available">Available</option>
+
+<option value="Borrowed">Borrowed</option>
+
+</select>
+
+<button type="submit">
+
+Save Book
+
+</button>
+
+</form>
+
+</div>
+
+<div>
+
+<h2 style="margin-bottom:20px;">
+Book List
+</h2>
+
+<table style="width:100%;background:white;border-radius:15px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.1);">
+
+<thead style="background:#2563eb;color:white;">
+
+<tr>
+
+<th style="padding:15px;">Title</th>
+
+<th>Author</th>
+
+<th>Category</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="bookTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 Library Management System
+
+</p>
+
+</footer>
+
+<script src="book.js"></script>
+
+</body>
+</html>

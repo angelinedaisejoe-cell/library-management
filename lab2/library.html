@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+    <!-- CSS Connection -->
+    <link rel="stylesheet" href="library.css">
+
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Library Management System</h1>
+</header>
+
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+
+    <h2>LibraryMS</h2>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#books">Books</a></li>
+    </ul>
+
+</nav>
+
+<section id="home" class="hero">
+
+    <h1>Welcome to Library Management System</h1>
+
+    <p>Find, Issue and Manage Books Easily</p>
+
+    <button onclick="showLocation()">
+        Get Started
+    </button>
+
+    <p id="location"></p>
+
+</section>
+
+<!-- Grid Layout -->
+
+<section class="grid-container">
+
+
+    <div class="grid-item">
+        <h2>500+</h2>
+        <p>Books</p>
+    </div>
+
+
+    <div class="grid-item">
+        <h2>200+</h2>
+        <p>Members</p>
+    </div>
+
+
+    <div class="grid-item">
+        <h2>50+</h2>
+        <p>Authors</p>
+    </div>
+
+
+    <div class="grid-item">
+        <h2>100+</h2>
+        <p>Daily Issues</p>
+    </div>
+
+
+</section>
+
+<!-- Login Page -->
+
+<section id="login">
+
+<header>
+    <h1>Login Page</h1>
+</header>
+
+
+<div class="login-box">
+
+<label>Username</label>
+<input type="text">
+
+
+<label>Password</label>
+<input type="password">
+
+
+<button>Login</button>
+
+
+</div>
+
+</section>
+
+<!-- Librarian Dashboard -->
+
+<section id="librarian">
+
+<header>
+<h1>Librarian Dashboard</h1>
+</header>
+
+
+<table>
+
+<tr>
+<th>Student ID</th>
+<th>Student Name</th>
+<th>Book Name</th>
+<th>Status</th>
+</tr>
+
+
+<tr>
+<td>101</td>
+<td>Ananya</td>
+<td>Java Programming</td>
+<td>Issued</td>
+</tr>
+
+
+<tr>
+<td>102</td>
+<td>Kiran</td>
+<td>Python Basics</td>
+<td>Returned</td>
+</tr>
+
+
+</table>
+
+</section>
+
+
+
+
+<!-- Member Page -->
+
+<section id="member">
+
+
+<header>
+<h1>Member Page</h1>
+</header>
+
+
+<table>
+
+<tr>
+<th>Member ID</th>
+<th>Member Name</th>
+<th>Books Issued</th>
+</tr>
+
+
+<tr>
+<td>M101</td>
+<td>Ananya</td>
+<td>2</td>
+</tr>
+
+
+<tr>
+<td>M102</td>
+<td>Kiran</td>
+<td>1</td>
+</tr>
+
+
+</table>
+
+</section>
+
+
+<!-- Book View -->
+
+<section id="books">
+
+<header>
+<h1>Book View</h1>
+</header>
+
+
+
+<div class="books">
+
+
+<div class="book">
+
+<h3>Java Programming</h3>
+
+<p>Author: James Gosling</p>
+
+<button onclick="openModal()">
+View Details
+</button>
+
+</div>
+
+
+<div class="book">
+
+<h3>Python Basics</h3>
+
+<p>Author: Guido Van Rossum</p>
+
+<button onclick="openModal()">
+View Details
+</button>
+
+</div>
+
+
+
+<div class="book">
+
+<h3>Database Systems</h3>
+
+<p>Author: Elmasri</p>
+
+<button onclick="openModal()">
+View Details
+</button>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+<!-- Modal -->
+
+<div id="bookModal" class="modal">
+
+
+<div class="modal-content">
+
+
+<span class="close" onclick="closeModal()">
+&times;
+</span>
+
+
+<h2>Java Programming</h2>
+
+<p>
+This book covers Java programming from basics to advanced concepts.
+</p>
+<h2>Python Basics</h2>
+<p>
+    This book introduces Python programming, focusing on fundamental concepts and practical applications.
+</p>
+<h2>Database Systems</h2>
+<p>
+    This book provides a comprehensive overview of database systems, including design, implementation, and management.
+</p>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<script>
+
+
+function showLocation(){
+
+    if(navigator.geolocation){
+
+        navigator.geolocation.getCurrentPosition(
+            
+            (position)=>{
+
+                document.getElementById("location").innerHTML =
+
+                "Latitude : " 
+                + position.coords.latitude 
+                +
+                "<br>Longitude : "
+                + position.coords.longitude;
+            }
+        );
+    }
+}
+
+
+
+function openModal(){
+
+document.getElementById("bookModal").style.display="block";
+
+}
+
+
+
+function closeModal(){
+
+document.getElementById("bookModal").style.display="none";
+
+}
+
+
+</script>
+
+</body>
+
+</html>
