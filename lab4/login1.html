@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – LibraryMS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/lab3/library.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="index1.html" class="logo">📚 LibraryMS</a>
+    <ul>
+        <li><a href="index1.html">Home</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="main">
+
+    <!-- LEFT: BRANDING -->
+    <div class="left-panel">
+        <div class="big-icon">📚</div>
+        <h1>Welcome Back to<br><span>LibraryMS</span></h1>
+        <p>Your gateway to thousands of books, seamless borrowing, and a world of knowledge.</p>
+        <div class="features">
+            <div class="feature-item"><span>📖</span> Browse thousands of books</div>
+            <div class="feature-item"><span>🔖</span> Track your borrowed books</div>
+            <div class="feature-item"><span>🔔</span> Get due date reminders</div>
+            <div class="feature-item"><span>🌐</span> Access from anywhere</div>
+        </div>
+    </div>
+
+    <!-- RIGHT: LOGIN FORM -->
+    <div class="right-panel">
+        <div class="login-card">
+            <h2>Sign In</h2>
+            <p class="subtitle">Enter your credentials to continue</p>
+
+            <div class="toast" id="successToast">✅ Login successful! Redirecting…</div>
+
+            <form id="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com">
+                    <div class="error-msg" id="err-email">Enter a valid email address.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Your password">
+                    <div class="error-msg" id="err-password">Password must be at least 6 characters.</div>
+                </div>
+
+                <div class="forgot"><a href="#">Forgot password?</a></div>
+
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="register-link">
+                Don't have an account? <a href="crud.html">Create one now</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>© 2026 Library Management System</footer>
+
+<script>
+    const API_BASE = 'http://localhost:5000/api'; // change if your API runs elsewhere
+
+    const loginForm = document.getElementById('loginForm');
+
+    const validate = () => {
+        let valid = true;
+
+        const email = document.getElementById('email').value.trim();
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        toggleError('email', 'err-email', !emailOk);
+        if (!emailOk) valid = false;
+
+        const pw = document.getElementById('password').value;
+        toggleError('password', 'err-password', pw.length < 6);
+        if (pw.length < 6) valid = false;
+
+        return valid;
+    };
+
+    const toggleError = (fieldId, errId, show) => {
+        const field = document.getElementById(fieldId);
+        const msg   = document.getElementById(errId);
+        field.classList.toggle('error', show);
+        msg.classList.toggle('show', show);
+    };
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const submitBtn = loginForm.querySelector('.login-btn');
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing in…';
+
+        try {
+            const res = await fetch(`${API_BASE}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                toggleError('email', 'err-email', true);
+                document.getElementById('err-email').textContent = data.message || 'Invalid email or password.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign In';
+                return;
+            }
+
+            // store the member info for use on other pages
+            localStorage.setItem('libraryms_member', JSON.stringify(data.member));
+
+            document.getElementById('successToast').classList.add('show');
+            setTimeout(() => window.location.href = 'index1.html', 1500);
+        } catch (err) {
+            toggleError('email', 'err-email', true);
+            document.getElementById('err-email').textContent = 'Could not reach the server. Is the API running?';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+        }
+    });
+
+    ['email', 'password'].forEach(id => {
+        document.getElementById(id).addEventListener('input', () => {
+            document.getElementById(id).classList.remove('error');
+            document.getElementById('err-' + id).classList.remove('show');
+            if (id === 'email') document.getElementById('err-email').textContent = 'Enter a valid email address.';
+        });
+    });
+</script>
+
+</body>
+</html>

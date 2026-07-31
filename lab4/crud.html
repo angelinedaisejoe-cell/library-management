@@ -1,173 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Management</title>
-
-
-<link href="crud.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – LibraryMS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .error-msg { display: none; }
+    .error-msg.show { display: block; }
+    .field-error { border-color: #ef4444 !important; }
+  </style>
 </head>
-
-<body>
-
-<!-- Navigation -->
-
-<nav>
-<div class="logo">
-LibraryMS
-</div>
-
-<ul>
-
-<li><a href="index.html">Home</a></li>
-<li><a href="#">Books</a></li>
-<li><a href="#">Members</a></li>
-<li><a href="#">Logout</a></li>
-
-</ul>
-
-</nav>
-
-<!-- Hero -->
-
-<section class="hero">
-
-<div class="hero-text">
-
-<h1>
-Book <span>CRUD</span> Management
-</h1>
-
-<p>
-Add, update, delete and manage books in the library database.
-</p>
-
-</div>
-
-<div class="hero-image">
-
-<img src="images/library.png" alt="Library">
-
-</div>
-
-</section>
-
-<!-- CRUD Form -->
-
-<section class="register-page">
-
-<div class="container">
-
-<h2>Add / Update Book</h2>
-
-<form id="bookForm">
-
-<input type="hidden" id="bookId">
-
-<label>Book Title</label>
-
-<input
-type="text"
-id="title"
-placeholder="Enter Book Title"
-required>
-
-<label>Author</label>
-
-<input
-type="text"
-id="author"
-placeholder="Enter Author Name"
-required>
-
-<label>ISBN</label>
-
-<input
-type="text"
-id="isbn"
-placeholder="Enter ISBN"
-required>
-
-<label>Category</label>
-
-<select id="category">
-
-<option>Programming</option>
-<option>Database</option>
-<option>Networking</option>
-<option>Artificial Intelligence</option>
-<option>Operating System</option>
-
-</select>
-
-<label>Status</label>
-
-<select id="availability">
-
-<option value="Available">Available</option>
-
-<option value="Borrowed">Borrowed</option>
-
-</select>
-
-<button type="submit">
-
-Save Book
-
-</button>
-
-</form>
-
-</div>
-
-<div>
-
-<h2 style="margin-bottom:20px;">
-Book List
-</h2>
-
-<table style="width:100%;background:white;border-radius:15px;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,.1);">
-
-<thead style="background:#2563eb;color:white;">
-
-<tr>
-
-<th style="padding:15px;">Title</th>
-
-<th>Author</th>
-
-<th>Category</th>
-
-<th>Status</th>
-
-<th>Actions</th>
-
-</tr>
-
-</thead>
-
-<tbody id="bookTable">
-
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-<footer>
-
-<p>
-
-© 2026 Library Management System
-
-</p>
-
-</footer>
-
-<script src="book.js"></script>
+<body class="bg-gray-100 flex flex-col items-center min-h-screen p-6">
+
+  <h1 class="text-2xl font-bold mb-4 text-blue-700">📚 LibraryMS — Member Registration</h1>
+
+  <!-- FORM -->
+  <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mb-6">
+    <form id="regForm" novalidate class="flex flex-col gap-3">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <input type="text" id="name" placeholder="Full Name" class="border p-2 rounded w-full">
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-name">Please enter your full name.</p>
+        </div>
+        <div>
+          <input type="email" id="email" placeholder="Email Address" class="border p-2 rounded w-full">
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-email">Enter a valid email address.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <input type="password" id="password" placeholder="Password (min. 6 characters)" class="border p-2 rounded w-full">
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-password">Password must be at least 6 characters.</p>
+        </div>
+        <div>
+          <input type="date" id="dob" class="border p-2 rounded w-full">
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-dob">Please select your date of birth.</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Gender</label>
+        <div class="flex gap-4 mt-1">
+          <label class="flex items-center gap-1 text-sm"><input type="radio" name="gender" value="Male"> Male</label>
+          <label class="flex items-center gap-1 text-sm"><input type="radio" name="gender" value="Female"> Female</label>
+          <label class="flex items-center gap-1 text-sm"><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+        <p class="error-msg text-red-500 text-xs mt-1" id="err-gender">Please select your gender.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <select id="membership" class="border p-2 rounded w-full">
+            <option value="">Select Membership</option>
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Guest">Guest</option>
+          </select>
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-membership">Please select a membership type.</p>
+        </div>
+        <div>
+          <input type="text" id="phone" placeholder="10-digit phone number" class="border p-2 rounded w-full">
+          <p class="error-msg text-red-500 text-xs mt-1" id="err-phone">Enter a valid 10-digit phone number.</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Preferred Book Categories</label>
+        <div class="flex flex-wrap gap-3 mt-1 checkbox-group">
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" value="Science"> Science</label>
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" value="Technology"> Technology</label>
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" value="History"> History</label>
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" value="Fiction"> Fiction</label>
+          <label class="flex items-center gap-1 text-sm"><input type="checkbox" value="Programming"> Programming</label>
+        </div>
+        <p class="error-msg text-red-500 text-xs mt-1" id="err-categories">Select at least one category.</p>
+      </div>
+
+      <div>
+        <label class="text-sm text-gray-600">Upload College / Staff ID</label>
+        <input type="file" id="file" accept="image/*,.pdf" class="border p-2 rounded w-full text-sm">
+      </div>
+
+      <div>
+        <textarea id="address" rows="3" placeholder="Your full address…" class="border p-2 rounded w-full"></textarea>
+        <p class="error-msg text-red-500 text-xs mt-1" id="err-address">Please enter your address.</p>
+      </div>
+          <div class="flex flex-wrap gap-2 mt-2">
+        <button type="submit" id="registerBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Register Now</button>
+        <button type="button" id="updateBtn" class="hidden bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Update Member</button>
+        <button type="button" id="deleteBtn" class="hidden bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete Member</button>
+        <button type="button" id="cancelEditBtn" class="hidden bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+      </div>
+  
+    </form>
+  </div>
+
+  <!-- MEMBER CARD PREVIEW -->
+  <div id="placeholder" class="text-gray-400 text-sm mb-6 text-center">
+    Your member card will appear here after you fill the form and register.
+  </div>
+
+  <div id="profileCard" class="hidden bg-white shadow-md rounded-lg p-4 w-full max-w-2xl mb-6">
+    <div class="flex items-center gap-3 border-b pb-3 mb-3">
+      <div id="cardAvatar" class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">A</div>
+      <div class="flex-1">
+        <h3 id="cardName" class="font-semibold">—</h3>
+        <span id="cardEmail" class="text-sm text-gray-500">—</span>
+      </div>
+      <div id="cardMembership" class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">—</div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+      <div><span class="text-gray-500">📞 Phone:</span> <span id="cardPhone">—</span></div>
+      <div><span class="text-gray-500">🎂 DOB:</span> <span id="cardDob">—</span></div>
+      <div><span class="text-gray-500">⚧ Gender:</span> <span id="cardGender">—</span></div>
+      <div><span class="text-gray-500">📁 ID File:</span> <span id="cardFile">—</span></div>
+      <div class="sm:col-span-2"><span class="text-gray-500">📚 Categories:</span> <span id="cardCategories">—</span></div>
+      <div class="sm:col-span-2"><span class="text-gray-500">🏠 Address:</span> <span id="cardAddress">—</span></div>
+    </div>
+  </div>
+
+  <div id="storageBanner" class="hidden text-green-600 text-sm mb-4">✅ Member data saved to local storage successfully.</div>
+
+  <!-- MEMBER LIST -->
+  <div class="bg-white shadow-md rounded-lg p-4 w-full max-w-2xl">
+    <h2 class="text-lg font-semibold mb-2">📋 Registered Members</h2>
+    <table id="memberTable" class="w-full text-sm">
+      <thead>
+        <tr class="text-left border-b">
+          <th class="py-2">Name</th>
+          <th>Email</th>
+          <th>Membership</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="memberBody" class="divide-y divide-gray-200"></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:5000/api'; // change if your API runs elsewhere
+
+    const regForm = document.getElementById('regForm');
+
+    // ── CRUD state (now backed by the API instead of localStorage) ──
+    let members = [];
+    let editingId = null; // id of the member currently loaded into the form for edit/delete
+
+    const jsonHeaders = { 'Content-Type': 'application/json' };
+
+    // fetch all members from the API and re-render the table
+    const loadMembers = async () => {
+        try {
+            const res = await fetch(`${API_BASE}/members`);
+            members = await res.json();
+            renderMembers();
+        } catch (err) {
+            get('memberBody').innerHTML = `<tr><td colspan="4" class="py-3 text-center text-red-400">Could not reach the server. Is the API running?</td></tr>`;
+        }
+    };
+
+    // ── helpers ──
+    const get = id => document.getElementById(id);
+    const setError = (fieldId, errId, show) => {
+        const field = get(fieldId);
+        const msg   = get(errId);
+        if (show) { field && field.classList.add('field-error'); msg && msg.classList.add('show'); }
+        else       { field && field.classList.remove('field-error'); msg && msg.classList.remove('show'); }
+    };
+
+    // ── validate ──
+    const validate = () => {
+        let valid = true;
+
+        // name
+        const name = get('name').value.trim();
+        setError('name', 'err-name', !name);
+        if (!name) valid = false;
+
+        // email
+        const email = get('email').value.trim();
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        setError('email', 'err-email', !emailOk);
+        if (!emailOk) valid = false;
+
+        // password
+        const pw = get('password').value;
+        setError('password', 'err-password', pw.length < 6);
+        if (pw.length < 6) valid = false;
+
+        // dob
+        const dob = get('dob').value;
+        setError('dob', 'err-dob', !dob);
+        if (!dob) valid = false;
+
+        // gender
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const genderErr = get('err-gender');
+        if (!gender) { genderErr.classList.add('show'); valid = false; }
+        else          { genderErr.classList.remove('show'); }
+
+        // membership
+        const membership = get('membership').value;
+        setError('membership', 'err-membership', !membership);
+        if (!membership) valid = false;
+
+        // phone
+        const phone = get('phone').value.trim();
+        const phoneOk = /^\d{10}$/.test(phone);
+        setError('phone', 'err-phone', !phoneOk);
+        if (!phoneOk) valid = false;
+
+        // categories
+        const cats = [...document.querySelectorAll('.checkbox-group input:checked')].map(c => c.value);
+        const catErr = get('err-categories');
+        if (cats.length === 0) { catErr.classList.add('show'); valid = false; }
+        else                    { catErr.classList.remove('show'); }
+
+        // address
+        const address = get('address').value.trim();
+        setError('address', 'err-address', !address);
+        if (!address) valid = false;
+
+        return { valid, name, email, dob, gender: gender?.value, membership, phone, cats, address };
+    };
+
+    // ── show member on the preview card ──
+    const showCard = (m) => {
+        get('cardAvatar').textContent     = m.name.charAt(0).toUpperCase();
+        get('cardName').textContent       = m.name;
+        get('cardEmail').textContent      = m.email;
+        get('cardMembership').textContent = m.membership;
+        get('cardPhone').textContent      = m.phone;
+        get('cardDob').textContent        = m.dob;
+        get('cardGender').textContent     = m.gender;
+        get('cardFile').textContent       = m.fileName;
+        get('cardAddress').textContent    = m.address;
+        get('cardCategories').textContent = (m.cats || m.categories || []).join(', ');
+
+        get('placeholder').classList.add('hidden');
+        get('profileCard').classList.remove('hidden');
+        get('profileCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // ── READ: render the member table ──
+    const renderMembers = () => {
+        const body = get('memberBody');
+        body.innerHTML = members.map(m => `
+            <tr>
+                <td class="py-2">${m.name}</td>
+                <td>${m.email}</td>
+                <td>${m.membership}</td>
+                <td class="py-2">
+                    <button type="button" class="bg-yellow-400 px-2 py-1 rounded text-white text-xs" onclick="editMember('${m._id}')">✏️</button>
+                    <button type="button" class="bg-red-500 px-2 py-1 rounded text-white text-xs" onclick="deleteMember('${m._id}')">🗑️</button>
+                </td>
+            </tr>
+        `).join('') || `<tr><td colspan="4" class="py-3 text-center text-gray-400">No members registered yet.</td></tr>`;
+    };
+
+    // ── clear the form back to a blank "create" state ──
+    const resetFormState = () => {
+        regForm.reset();
+        editingId = null;
+        get('placeholder').classList.remove('hidden');
+        get('profileCard').classList.add('hidden');
+        get('storageBanner').classList.add('hidden');
+        get('registerBtn').classList.remove('hidden');
+        get('updateBtn').classList.add('hidden');
+        get('deleteBtn').classList.add('hidden');
+        get('cancelEditBtn').classList.add('hidden');
+    };
+
+    // ── CREATE (Register Now) — calls the API to create the account ──
+    regForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (editingId) return; // editing goes through the Update button instead
+        const { valid, name, email, dob, gender, membership, phone, cats, address } = validate();
+        if (!valid) return;
+
+        const fileInput = get('file');
+        const fileName = fileInput.files.length ? fileInput.files[0].name : 'Not uploaded';
+        const password = get('password').value;
+
+        try {
+            const res = await fetch(`${API_BASE}/register`, {
+                method: 'POST',
+                headers: jsonHeaders,
+                body: JSON.stringify({ name, email, password, dob, gender, membership, phone, categories: cats, address, fileName }),
+            });
+            const data = await res.json();
+            if (!res.ok) { alert(data.message || 'Registration failed.'); return; }
+
+            localStorage.setItem('libraryms_member', JSON.stringify(data.member));
+
+            showCard(data.member);
+            get('storageBanner').classList.remove('hidden');
+            get('storageBanner').textContent = '✅ Member registered successfully.';
+            await loadMembers();
+        } catch (err) {
+            alert('Could not reach the server. Is the API running?');
+        }
+    });
+
+    // ── UPDATE (dedicated button — updates whichever member is currently loaded) ──
+    get('updateBtn').addEventListener('click', async () => {
+        if (!editingId) { alert('Click the ✏️ edit icon on a member in the table below first.'); return; }
+        const { valid, name, email, dob, gender, membership, phone, cats, address } = validate();
+        if (!valid) return;
+
+        try {
+            const res = await fetch(`${API_BASE}/members/${editingId}`, {
+                method: 'PUT',
+                headers: jsonHeaders,
+                body: JSON.stringify({ name, email, dob, gender, membership, phone, categories: cats, address }),
+            });
+            const data = await res.json();
+            if (!res.ok) { alert(data.message || 'Update failed.'); return; }
+
+            showCard(data);
+            get('storageBanner').classList.remove('hidden');
+            get('storageBanner').textContent = '✅ Member updated successfully.';
+            await loadMembers();
+        } catch (err) {
+            alert('Could not reach the server. Is the API running?');
+        }
+    });
+
+    get('cancelEditBtn').addEventListener('click', resetFormState);
+
+    // ── DELETE (dedicated button — deletes whichever member is currently loaded) ──
+    get('deleteBtn').addEventListener('click', async () => {
+        if (!editingId) { alert('Click the ✏️ edit icon on a member in the table below first.'); return; }
+        await deleteMember(editingId);
+    });
+
+    // ── UPDATE: populate the form from a table row ──
+    function editMember(id) {
+        const m = members.find(x => x._id === id);
+        if (!m) return;
+
+        get('name').value = m.name;
+        get('email').value = m.email;
+        get('password').value = '';
+        const dobInput = get('dob');
+        const parsedDob = new Date(m.dob);
+        if (!isNaN(parsedDob)) dobInput.value = parsedDob.toISOString().slice(0, 10);
+
+        document.querySelectorAll('input[name="gender"]').forEach(r => r.checked = (r.value === m.gender));
+        get('membership').value = m.membership;
+        get('phone').value = m.phone;
+        document.querySelectorAll('.checkbox-group input').forEach(c => c.checked = (m.categories || []).includes(c.value));
+        get('address').value = m.address;
+
+        editingId = id;
+        get('registerBtn').classList.add('hidden');
+        get('updateBtn').classList.remove('hidden');
+        get('deleteBtn').classList.remove('hidden');
+        get('cancelEditBtn').classList.remove('hidden');
+        regForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── DELETE: remove a member via the API ──
+    async function deleteMember(id) {
+        if (!confirm('Delete this member?')) return;
+        try {
+            const res = await fetch(`${API_BASE}/members/${id}`, { method: 'DELETE' });
+            if (!res.ok) { const data = await res.json(); alert(data.message || 'Delete failed.'); return; }
+            if (editingId === id) resetFormState();
+            await loadMembers();
+        } catch (err) {
+            alert('Could not reach the server. Is the API running?');
+        }
+    }
+
+    // expose for inline onclick handlers
+    window.editMember = editMember;
+    window.deleteMember = deleteMember;
+
+    // initial load from the API on page load
+    loadMembers();
+
+    // ── live clear errors on change ──
+    ['name','email','password','dob','membership','phone','address'].forEach(id => {
+        get(id)?.addEventListener('input', () => {
+            get(id).classList.remove('field-error');
+            const errEl = get('err-' + id);
+            if (errEl) errEl.classList.remove('show');
+        });
+    });
+  </script>
 
 </body>
 </html>
